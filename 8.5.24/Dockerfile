@@ -12,8 +12,7 @@ ENV TOMCAT_VERSION=8.5.24 \
 LABEL io.k8s.description="Platform for building and running JEE applications on Tomcat 8.5.24" \
       io.k8s.display-name="Tomcat 8.5.24" \
       io.openshift.expose-services="8080:http" \
-      io.openshift.tags="builder,tomcat,tomcat8" \
-      io.openshift.s2i.destination="/opt/s2i/destination"
+      io.openshift.tags="builder,tomcat,tomcat8"
 
 # Install Maven, Tomcat 8.5.24
 RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
@@ -21,7 +20,7 @@ RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-
     rpm -V $INSTALL_PKGS && \
     yum clean all -y && \
     (curl -v http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | \
-    tar -zx -C /usr/loc            al) && \
+    tar -zx -C /usr/local) && \
     ln -sf /usr/local/apache-maven-$MAVEN_VERSION/bin/mvn /usr/local/bin/mvn && \
     mkdir -p $HOME/.m2 && \
     mkdir -p /tomcat && \
@@ -37,6 +36,7 @@ COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 
 RUN chown -R 1001:0 /tomcat && chown -R 1001:0 $HOME && \
     chmod -R ug+rw /tomcat && \
+    chmod -R +x $STI_SCRIPTS_PATH && \
     chmod -R g+rw /opt/s2i/destination
 
 USER 1001

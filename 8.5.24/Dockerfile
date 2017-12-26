@@ -12,10 +12,12 @@ ENV TOMCAT_VERSION=8.5.24 \
 LABEL io.k8s.description="Platform for building and running JEE applications on Tomcat 8.5.24" \
       io.k8s.display-name="Tomcat 8.5.24" \
       io.openshift.expose-services="8080:http" \
-      io.openshift.tags="builder,tomcat,tomcat8"
+      io.openshift.tags="builder,tomcat,tomcat8" \
+      io.openshift.s2i.destination="/opt/s2i/destination" \
+      io.openshift.s2i.assemble-user="root"
 
 # Install Maven, Tomcat 8.5.24
-RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
+RUN INSTALL_PKGS="tar java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
     yum install -y --enablerepo=centosplus $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     yum clean all -y && \
@@ -25,6 +27,7 @@ RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-
     mkdir -p $HOME/.m2 && \
     mkdir -p /tomcat && \
     (curl -v http://mirrors.hust.edu.cn/apache/tomcat/tomcat-8/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz | tar -zx --strip-components=1 -C /tomcat) && \
+    rm -rf /tomcat/webapps/* && \
     mkdir -p /opt/s2i/destination
 
 # Add s2i wildfly customizations
@@ -36,7 +39,6 @@ COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 
 RUN chown -R 1001:0 /tomcat && chown -R 1001:0 $HOME && \
     chmod -R ug+rw /tomcat && \
-    chmod -R +x $STI_SCRIPTS_PATH && \
     chmod -R g+rw /opt/s2i/destination
 
 USER 1001

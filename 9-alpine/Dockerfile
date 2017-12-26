@@ -7,7 +7,7 @@ MAINTAINER Rabbit <380303318@qq.com>
 EXPOSE 8080
 
 ENV TOMCAT_VERSION=8.5.24 \
-    MAVEN_VERSION=3.3.9
+    MAVEN_VERSION=3.5.2
 
 LABEL io.k8s.description="Platform for building and running JEE applications on Tomcat 8.5.24" \
       io.k8s.display-name="Tomcat 8.5.24" \
@@ -20,7 +20,7 @@ RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-
     yum install -y --enablerepo=centosplus $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
     yum clean all -y && \
-    (curl -v https://www.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | \
+    (curl -v http://mirrors.tuna.tsinghua.edu.cn/apache/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.zip | \
     tar -zx -C /usr/loc            al) && \
     ln -sf /usr/local/apache-maven-$MAVEN_VERSION/bin/mvn /usr/local/bin/mvn && \
     mkdir -p $HOME/.m2 && \

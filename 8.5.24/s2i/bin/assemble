@@ -14,13 +14,13 @@ fi
 
 # Restore artifacts from the previous build (if they exist).
 #
-if [ "$(ls /tmp/artifacts/ 2>/dev/null)" ]; then
+if [ "$(ls /opt/s2i/destination/artifacts/ 2>/dev/null)" ]; then
   echo "---> Restoring build artifacts..."
-  mv /tmp/artifacts/. ./
+  mv /opt/s2i/destination/artifacts/. ./
 fi
 
 echo "---> Installing application source..."
-cp -Rf /tmp/src/. ./
+cp -Rf /opt/s2i/destination/src/. ./
 
 echo "---> Building application from source..."
 # TODO: Add build steps for your application, eg npm install, bundle install, pip install, etc.

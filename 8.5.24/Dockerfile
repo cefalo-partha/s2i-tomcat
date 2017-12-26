@@ -13,8 +13,7 @@ LABEL io.k8s.description="Platform for building and running JEE applications on 
       io.k8s.display-name="Tomcat 8.5.24" \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="builder,tomcat,tomcat8" \
-      io.openshift.s2i.destination="/opt/s2i/destination" \
-      io.openshift.s2i.assemble-user="root"
+      io.openshift.s2i.destination="/opt/s2i/destination"
 
 # Install Maven, Tomcat 8.5.24
 RUN INSTALL_PKGS="tar java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
@@ -39,6 +38,7 @@ COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 
 RUN chown -R 1001:0 /tomcat && chown -R 1001:0 $HOME && \
     chmod -R ug+rw /tomcat && \
+    chmod -R +x $STI_SCRIPTS_PATH && \
     chmod -R g+rw /opt/s2i/destination
 
 USER 1001

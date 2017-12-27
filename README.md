@@ -8,7 +8,6 @@ The application image combines the builder image with your applications source c
 The following command will create the application image:
 ```
 s2i build test/test-app s2i-tomcat s2i-tomcat-app
----> Building and installing application from source...
 ```
 
 #### Running the application image

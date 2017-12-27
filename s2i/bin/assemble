@@ -24,6 +24,6 @@ cp -Rf /opt/s2i/destination/src/. ./
 
 echo "---> Building application from source..."
 # TODO: Add build steps for your application, eg npm install, bundle install, pip install, etc.
-mvn -Dmaven.test.skip=true clean package
-mv ./target/*.war /tomcat/webapps/
-
+mvn -Dmaven.test.skip=true package
+find . -type f -name '*.war'|xargs -i cp {} /opt/apache-tomcat-8.5.24/webapps/
+mvn clean

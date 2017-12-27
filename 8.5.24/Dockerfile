@@ -36,7 +36,7 @@ ADD ./contrib/settings.xml $HOME/.m2/
 COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 
 RUN chown -R 1001:0 /tomcat && chown -R 1001:0 $HOME && \
-    chmod -R ug+rw /tomcat && \
+    chmod -R ug+rwx /tomcat && \
     chmod -R +x $STI_SCRIPTS_PATH && \
     chmod -R g+rw /opt/s2i/destination
 

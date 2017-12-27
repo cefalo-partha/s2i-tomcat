@@ -6,4 +6,4 @@
 # For more information see the documentation:
 #	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
-bash -c "/opt/apache-tomcat-8.5.24/bin/catalina.sh run"
+bash -c "/tomcat/bin/catalina.sh run"

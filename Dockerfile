@@ -35,8 +35,7 @@ ADD ./contrib/settings.xml $HOME/.m2/
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 
-RUN useradd -m tomcat -u 1001 && \
-    chmod -R a+rw /tomcat && \
+RUN chmod -R a+rw /tomcat && \
     chmod a+rwx /tomcat/* && \
     chmod +x /tomcat/bin/*.sh && \
     chmod -R +x $STI_SCRIPTS_PATH && \

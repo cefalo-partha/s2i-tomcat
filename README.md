@@ -22,7 +22,7 @@ The application, which consists of a simple static web page, should now be acces
 
 ##### 1. import s2i-tomcat image to openshift
 ```
-oc import-image you repository host/s2i-tomcat:lastest -n openshift --confirm --insecure
+oc import-image (you repository host)/s2i-tomcat:lastest -n openshift --confirm --insecure
 ```
 ##### 2. edit image stream ,add annotation tags 
 ```

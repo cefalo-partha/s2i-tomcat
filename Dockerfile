@@ -1,5 +1,5 @@
 # tomcat-s2i
-FROM maven:3.5-jdk-8-alpine
+FROM maven:3.3-jdk-7
 
 MAINTAINER Rabbit <380303318@qq.com>
 
@@ -21,7 +21,7 @@ chmod -R a+rw /opt && \
 chmod a+rwx /opt/apache-tomcat-8.5.24/* && \
 chmod +x /opt/apache-tomcat-8.5.24/bin/*.sh && \
 rm -rf /opt/apache-tomcat-8.5.24/webapps/*
-# TODO: Copy the S2I scripts to /usr/libexec/s2i, since maven:3.5-jdk-8-alpine image
+# TODO: Copy the S2I scripts to /usr/libexec/s2i, since maven:3.3-jdk-7 image
 # sets io.openshift.s2i.scripts-url label that way, or update that label
 COPY ./s2i/bin/ /usr/libexec/s2i
 # This default user is created in the image

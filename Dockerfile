@@ -38,6 +38,7 @@ COPY ./s2i/bin/ $STI_SCRIPTS_PATH
 RUN chmod -R a+rw /tomcat && \
     chmod a+rwx /tomcat/* && \
     chmod +x /tomcat/bin/*.sh && \
+    chmod -R a+rw $HOME && \
     chmod -R +x $STI_SCRIPTS_PATH && \
     chmod -R g+rw /opt/s2i/destination
 

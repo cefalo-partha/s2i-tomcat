@@ -27,13 +27,14 @@ RUN INSTALL_PKGS="tar java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
     mkdir -p /tomcat && \
     (curl -v http://mirrors.hust.edu.cn/apache/tomcat/tomcat-8/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz | tar -zx --strip-components=1 -C /tomcat) && \
     rm -rf /tomcat/webapps/* && \
-    rm -rf //tomcat/conf/server.xml && \
     mkdir -p /opt/s2i/destination
+
+# Add s2i Tomcat customizations
+ADD ./contrib/server.xml /tomcat/conf/server.xml
+ADD ./contrib/settings.xml $HOME/.m2/
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY ./s2i/bin/ $STI_SCRIPTS_PATH
-COPY ./contrib/server.xml /tomcat/conf/
-COPY ./contrib/settings.xml $HOME/.m2/
 
 RUN chown -R 1001:0 /tomcat && chown -R 1001:0 $HOME && \
     chmod -R ug+rw /tomcat && \

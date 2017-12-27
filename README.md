@@ -31,7 +31,17 @@ oc edit is/tomcat-s2i -n openshift
 ```$yaml
 tags:
     - annotations:
-        tags: builder
+        description: >-
+                  Build and run Tomcat applications on CentOS 7. For more information
+                  about using this builder image, including OpenShift considerations,
+                  see https://github.com/silentwu/s2i-tomcat.git.
+        iconClass: icon-wildfly
+        openshift.io/display-name: Tomcat 8.5.24
+        openshift.io/provider-display-name: 'Rabbit blog, http://blog.xianshiyue.com'
+        sampleRepo: 'https://gitee.com/silentwu/openshift-tomcat.git'
+        supports: 'tomcat:8.5.24,jee,java'
+        tags: 'builder,tomcat,java'
+        version: 8.5.24
 ```
 
 

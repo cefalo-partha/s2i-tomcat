@@ -31,6 +31,7 @@ RUN INSTALL_PKGS="tar java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
 
 # Add s2i customizations
 ADD ./contrib/settings.xml $HOME/.m2/
+ADD ./contrib/server.xml /tomcat/conf/
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY ./s2i/bin/ $STI_SCRIPTS_PATH

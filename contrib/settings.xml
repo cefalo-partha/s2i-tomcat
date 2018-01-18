@@ -6,10 +6,10 @@
  <mirrors>
    <!-- ### configured mirrors ### -->
      <mirror>
-         <id>nexus-aliyun</id>
+         <id>nexus</id>
          <mirrorOf>*</mirrorOf>
-         <name>Nexus aliyun</name>
-         <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+         <name>Nexus Container</name>
+         <url>http://nexus/nexus/content/groups/public</url>
      </mirror>
  </mirrors>
 

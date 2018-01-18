@@ -3,18 +3,12 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
 
- <mirrors>
-   <!-- ### configured mirrors ### -->
-     <mirror>
-         <id>nexus</id>
-         <mirrorOf>*</mirrorOf>
-         <name>Nexus Container</name>
-         <url>http://nexus/content/groups/public/</url>
-     </mirror>
- </mirrors>
+  <mirrors>
+    <!-- ### configured mirrors ### -->
+  </mirrors>
 
- <proxies>
-   <!-- ### configured http proxy ### -->
+  <proxies>
+    <!-- ### configured http proxy ### -->
   </proxies>
 
   <profiles>

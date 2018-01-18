@@ -7,6 +7,18 @@
 #	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
 
+# insert settings for mirrors/repository managers into settings.xml if supplied
+function configure_mirrors() {
+  if [ -n "$MAVEN_MIRROR_URL" ]; then
+    xml="    <mirror>\
+      <id>mirror.default</id>\
+      <url>$MAVEN_MIRROR_URL</url>\
+      <mirrorOf>external:*</mirrorOf>\
+    </mirror>"
+    sed -i "s|<!-- ### configured mirrors ### -->|$xml|" $HOME/.m2/settings.xml
+  fi
+}
+
 # If the 's2i-tomcat' assemble script is executed with the '-h' flag, print the usage.
 if [[ "$1" == "-h" ]]; then
 	exec /usr/libexec/s2i/usage
@@ -25,8 +37,10 @@ cp -Rf /opt/s2i/destination/src/. ./
 echo "---> Building application from source..."
 # TODO: Add build steps for your application, eg npm install, bundle install, pip install, etc.
 
+configure_mirrors
 
-if [[ "$MAVEN_PROFILE" == "" ]]; then
+
+if [-n "$MAVEN_PROFILE" ]; then
 	mvn -Dmaven.test.skip=true package
 else
     mvn -Dmaven.test.skip=true package  -P$MAVEN_PROFILE

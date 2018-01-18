@@ -9,7 +9,7 @@
          <id>nexus</id>
          <mirrorOf>*</mirrorOf>
          <name>Nexus Container</name>
-         <url>http://nexus/nexus/content/groups/public</url>
+         <url>http://nexus/content/groups/public/</url>
      </mirror>
  </mirrors>
 

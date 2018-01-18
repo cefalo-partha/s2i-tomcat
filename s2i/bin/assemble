@@ -40,7 +40,7 @@ echo "---> Building application from source..."
 configure_mirrors
 
 
-if [-n "$MAVEN_PROFILE" ]; then
+if [ -n "$MAVEN_PROFILE" ]; then
 	mvn -Dmaven.test.skip=true package
 else
     mvn -Dmaven.test.skip=true package  -P$MAVEN_PROFILE

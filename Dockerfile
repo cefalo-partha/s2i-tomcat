@@ -6,7 +6,7 @@ MAINTAINER Rabbit <380303318@qq.com>
 
 EXPOSE 8080
 
-ENV TOMCAT_VERSION=8.5.24 \
+ENV TOMCAT_VERSION=8.5.30 \
     MAVEN_VERSION=3.5.2
 
 LABEL io.k8s.description="Platform for building and running JEE applications on Tomcat" \
@@ -25,7 +25,7 @@ RUN INSTALL_PKGS="tar java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
     ln -sf /usr/local/apache-maven-$MAVEN_VERSION/bin/mvn /usr/local/bin/mvn && \
     mkdir -p $HOME/.m2 && \
     mkdir -p /tomcat && \
-    (curl -v http://mirrors.hust.edu.cn/apache/tomcat/tomcat-8/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz | tar -zx --strip-components=1 -C /tomcat) && \
+    (curl -v http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-8/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz | tar -zx --strip-components=1 -C /tomcat) && \
     rm -rf /tomcat/webapps/* && \
     mkdir -p /opt/s2i/destination
 
